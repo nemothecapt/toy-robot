@@ -132,6 +132,34 @@ CREATE TABLE robot (
 );
 ```
 
+## Data Transfer Objects (DTOs)
+
+The API uses a comprehensive DTO structure for request/response validation and standardization:
+
+### Request DTOs
+- **`RobotStateDto`**: Validates incoming robot state data (x, y, direction)
+  - Ensures coordinates are within 5x5 grid bounds (0-4)
+  - Validates direction is one of: NORTH, SOUTH, EAST, WEST
+  - Used by `POST /robot/move` endpoint
+
+### Response DTOs  
+- **`RobotResponseDto`**: Standardizes robot data returned by API
+  - Consistent structure across all endpoints
+  - Includes id, x, y, direction, createdAt fields
+  - Factory method `fromEntity()` for easy conversion
+
+### Query DTOs
+- **`RobotQueryDto`**: Validates query parameters for GET endpoints
+  - Optional limit/offset for pagination (future use)
+  - Extensible for filtering and sorting options
+
+### Benefits
+- **Type Safety**: Full TypeScript validation at compile time
+- **Runtime Validation**: class-validator decorators ensure data integrity
+- **API Consistency**: Standardized request/response formats
+- **Documentation**: Self-documenting API structure
+- **Extensibility**: Easy to add new validation rules
+
 ## Testing
 
 ```bash
@@ -154,7 +182,11 @@ backend/
 │   │   ├── controllers/robot.controller.ts    # API endpoints
 │   │   ├── services/robot.service.ts          # Business logic
 │   │   ├── entities/robot.entity.ts           # Database entity
-│   │   ├── dto/place-robot.dto.ts             # Data validation
+│   │   ├── dto/                               # Data Transfer Objects
+│   │   │   ├── index.ts                       # DTO exports
+│   │   │   ├── robot-state.dto.ts             # Request validation
+│   │   │   ├── robot-response.dto.ts          # Response standardization
+│   │   │   └── robot-query.dto.ts             # Query parameter validation
 │   │   └── robot.module.ts                    # Module configuration
 │   ├── app.module.ts                          # Main application module
 │   └── main.ts                                # Application bootstrap

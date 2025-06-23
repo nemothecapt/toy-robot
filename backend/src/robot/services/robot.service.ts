@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Robot } from '../entities/robot.entity';
-import { PlaceRobotDto } from '../dto/place-robot.dto';
+import { RobotStateDto } from '../dto/robot-state.dto';
 
 /**
  * Robot Service
@@ -24,12 +24,12 @@ export class RobotService {
    * Creates a new robot record for history tracking.
    * Frontend validates moves before calling this method.
    * 
-   * @param placeRobotDto - Robot position and direction data
+   * @param robotStateDto - Robot position and direction data
    * @returns Promise<Robot> - Saved robot entity with generated ID and timestamp
    */
-  async saveRobotState(placeRobotDto: PlaceRobotDto): Promise<Robot> {
+  async saveRobotState(robotStateDto: RobotStateDto): Promise<Robot> {
     // Frontend handles validation, we just save the state for history
-    const robot = this.robotRepository.create(placeRobotDto);
+    const robot = this.robotRepository.create(robotStateDto);
     return this.robotRepository.save(robot);
   }
 

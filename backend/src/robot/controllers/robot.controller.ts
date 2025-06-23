@@ -8,7 +8,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { RobotService } from '../services/robot.service';
-import { PlaceRobotDto } from '../dto/place-robot.dto';
+import { RobotStateDto } from '../dto/robot-state.dto';
+import { RobotResponseDto } from '../dto/robot-response.dto';
 
 /**
  * Robot Controller
@@ -27,13 +28,14 @@ export class RobotController {
    * Saves a robot state to the database for history tracking.
    * Used by frontend after executing robot movements/turns.
    * 
-   * @param placeRobotDto - Robot position and direction data
+   * @param robotStateDto - Robot position and direction data
    * @returns Saved robot entity with ID and timestamp
    */
   @Post('move')
   @HttpCode(HttpStatus.OK)
-  async saveRobotState(@Body(ValidationPipe) placeRobotDto: PlaceRobotDto) {
-    return this.robotService.saveRobotState(placeRobotDto);
+  async saveRobotState(@Body(ValidationPipe) robotStateDto: RobotStateDto): Promise<RobotResponseDto> {
+    const robot = await this.robotService.saveRobotState(robotStateDto);
+    return RobotResponseDto.fromEntity(robot);
   }
 
   /**
@@ -45,12 +47,12 @@ export class RobotController {
    * @returns Latest robot state or empty object {} if no robot exists
    */
   @Get('current')
-  async getCurrentRobot() {
+  async getCurrentRobot(): Promise<RobotResponseDto | {}> {
     const robot = await this.robotService.getCurrentRobot();
     if (!robot) {
       return {}; // Return empty object instead of null for consistent frontend handling
     }
-    return robot;
+    return RobotResponseDto.fromEntity(robot);
   }
 
   /**
@@ -62,7 +64,8 @@ export class RobotController {
    * @returns Array of robot states in chronological order
    */
   @Get('history')
-  async getRobotHistory() {
-    return this.robotService.getRobotHistory();
+  async getRobotHistory(): Promise<RobotResponseDto[]> {
+    const robots = await this.robotService.getRobotHistory();
+    return robots.map(robot => RobotResponseDto.fromEntity(robot));
   }
 } 

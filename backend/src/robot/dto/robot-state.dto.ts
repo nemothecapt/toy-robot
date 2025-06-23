@@ -2,7 +2,7 @@ import { IsNumber, IsEnum, Min, Max } from 'class-validator';
 import { Direction } from '../entities/robot.entity';
 
 /**
- * Place Robot Data Transfer Object
+ * Robot State Data Transfer Object
  * 
  * Validates incoming robot state data from the frontend.
  * Ensures coordinates are within the 5x5 grid bounds and
@@ -10,7 +10,7 @@ import { Direction } from '../entities/robot.entity';
  * 
  * Used by the /robot/move endpoint for input validation.
  */
-export class PlaceRobotDto {
+export class RobotStateDto {
   /** X coordinate (0-4, left to right on the grid) */
   @IsNumber()
   @Min(0) // Left boundary

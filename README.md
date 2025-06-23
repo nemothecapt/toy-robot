@@ -218,8 +218,16 @@ npm test -- --testPathPattern=robotApi.test.ts
 ### Backend Tests
 ```bash
 cd backend
-npm run test
+npm run test        # Unit tests (6 tests)
+npm run test:e2e    # API integration tests (5 tests)
 ```
+
+**Backend Test Coverage:**
+- ✅ **Service Layer Testing**: Robot state persistence and retrieval
+- ✅ **DTO Validation**: Request/response data transfer objects
+- ✅ **API Integration**: Full HTTP endpoint testing with validation
+- ✅ **Database Operations**: SQLite repository operations
+- ✅ **Error Handling**: Validation errors and edge cases
 
 ### Test Quality Standards
 - **Isolated Tests**: Each test is independent and can run in isolation
@@ -279,7 +287,11 @@ toy-robot-simulator/
 │   ├── src/
 │   │   ├── robot/
 │   │   │   ├── controllers/robot.controller.ts
-│   │   │   ├── dto/place-robot.dto.ts
+│   │   │   ├── dto/
+│   │   │   │   ├── index.ts                    # DTO exports
+│   │   │   │   ├── robot-state.dto.ts          # Request validation
+│   │   │   │   ├── robot-response.dto.ts       # Response standardization
+│   │   │   │   └── robot-query.dto.ts          # Query parameter validation
 │   │   │   ├── entities/robot.entity.ts
 │   │   │   ├── services/robot.service.ts
 │   │   │   └── robot.module.ts

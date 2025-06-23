@@ -56,10 +56,12 @@ POST /robot/move
 }
 ```
 
-**Validation:**
+**Validation (RobotStateDto):**
 - `x`: Number, 0-4 (grid boundaries)
 - `y`: Number, 0-4 (grid boundaries) 
 - `direction`: Enum, one of: "NORTH", "SOUTH", "EAST", "WEST"
+
+**Note:** Request validation is handled by `RobotStateDto` with class-validator decorators for runtime type checking and boundary validation.
 
 **Response:**
 - **200 OK** - Returns saved robot entity with ID and timestamp
