@@ -1,0 +1,253 @@
+.robot-simulator {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 20px 20px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.robot-simulator h1 {
+  text-align: center;
+  color: #FEFEFE;
+  background-color: #303537;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  font-size: small;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #333;
+  background-color: #2B3538;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-row {
+  display: flex;
+}
+
+.grid-cell {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  background-color: #2B3538;
+}
+
+.grid-cell:hover {
+  background-color: #e8f4fd;
+}
+
+
+
+.robot-cell {
+  background-color: #2B3538;
+}
+
+.robot-image {
+  width: 81px;
+  height: 81px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.coordinates-info {
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.coordinates-info p {
+  margin: 5px 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-width: 300px;
+}
+
+.command-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.main-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-buttons .command-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-width: 80px;
+}
+
+.command-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+  text-transform: capitalize;
+}
+
+.command-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.move-btn {
+  background: linear-gradient(to bottom, #51AECC, #5AB6B8);
+  color: #2A3034;
+}
+
+.move-btn:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #4A9DB5, #52A5A7);
+}
+
+.turn-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.turn-btn {
+  background: linear-gradient(to bottom, #51AECC, #5AB6B8);
+  color: #2A3034;
+}
+
+.turn-btn:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #4A9DB5, #52A5A7);
+}
+
+.report-btn {
+  background-color: #2B3538;
+  border: 2px solid #3F8BA6;
+  color: #DDDDDE;
+  min-width: 160px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.report-btn:hover:not(:disabled) {
+  background-color: #343A3D;
+  border-color: #4A9DB5;
+}
+
+.keyboard-instructions {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.keyboard-instructions h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #495057;
+}
+
+.keyboard-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.keyboard-instructions li {
+  margin: 5px 0;
+  color: #6c757d;
+}
+
+.robot-info, .report-message {
+  background-color: #d4edda;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #c3e6cb;
+}
+
+.robot-info h3, .report-message h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #155724;
+}
+
+.robot-info p, .report-message p {
+  margin: 5px 0;
+  color: #155724;
+  font-weight: bold;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #f5c6cb;
+}
+
+.error-message h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #721c24;
+}
+
+.error-message p {
+  margin: 5px 0;
+  color: #721c24;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .grid-cell {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .robot {
+    font-size: 28px;
+  }
+  
+  .controls {
+    min-width: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+} 
